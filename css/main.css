@@ -1,0 +1,10 @@
+body {
+    background-color: rgb(59, 59, 59);
+}
+
+div.container {
+    padding-top: 50px;
+    margin: auto;
+    color: white;
+    font-size: 20px;
+}
