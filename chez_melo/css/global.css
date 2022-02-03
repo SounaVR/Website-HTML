@@ -1,6 +1,6 @@
 /* Imbriquée dans une autre règle-@ conditionnelle */
 @supports (display: flex) {
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 300px) {
         body {
             display: flex;
         }
@@ -10,13 +10,13 @@
 body {
     display: grid;
     background-color: #DAD3DB;
-    background-image: url("/assets/background.jpg");
+    background-image: url("/chez_melo/assets/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
-nav {
+nav#melo_nav {
     background-color: rgba(220, 20, 60, 0.815);
     display: flex;
     margin: auto;
@@ -25,28 +25,26 @@ nav {
     padding: 5px;
 }
 
-nav a {
+nav#melo_nav a {
     color: black;
     padding: 10px;
     text-decoration: none;
 }
 
-nav a:hover {
+nav#melo_nav a:hover {
     color: pink;
     padding: 15px;
 }
 
 div.container {
     margin: auto;
-    width: fit-content;
-    height: fit-content;
+    width: auto;
+    height: auto;
 }
 
 header img {
     display: flex;
     margin: auto;
-    width: 50%;
-    height: 50%;
     background-color: rgba(255, 255, 255, 0.658);
 }
 
