@@ -26,7 +26,7 @@ navbar.innerHTML = `
                         HTML/CSS
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/chez_melo/chez_melo.html">TP Chez Mélo</a></li>
+                        <li><a class="dropdown-item" href="/chez_melo/html/chez_melo.html">TP Chez Mélo</a></li>
                     </ul>
                 </li>
             </ul>
