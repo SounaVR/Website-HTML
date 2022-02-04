@@ -1,0 +1,74 @@
+body {
+    text-decoration: none;
+    word-wrap: break-word;
+    background-color: rgb(59, 59, 59);
+    
+    text-align: center;
+}
+
+nav#melo_nav {
+    background-color: rgba(220, 20, 60, 0.815);
+    display: flex;
+    margin: auto;
+    width: max-content;
+    height: max-content;
+    padding: 5px;
+}
+
+nav#melo_nav a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+}
+
+nav#melo_nav a:hover {
+    color: pink;
+    padding: 15px;
+}
+
+label {
+    color: black;
+}
+
+div#input {
+    margin: auto;
+}
+
+label#form,
+output {
+    color: white;
+}
+
+div#margin {
+    margin-bottom: 1em;
+}
+
+.range-wrap {
+    position: relative;
+    margin: 0 auto 3rem;
+}
+
+.range {
+    width: 100%;
+}
+
+div output.bubble {
+    background: rgb(170, 168, 26);
+    color: white;
+    padding: 4px 12px;
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 55px;
+}
+
+div output.bubble::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgb(170, 168, 26);
+    top: -1px;
+    left: 50%;
+}
