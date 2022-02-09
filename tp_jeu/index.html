@@ -123,7 +123,7 @@
                                 <input type="number" class="form-control" step="1">
                             </div>
                             <div id="margin">
-                                <label class="form-label">Endurance</label>
+                                <label class="form-label">Intelligence</label>
                                 <input type="number" class="form-control" step="1">
                             </div>
                             <div id="margin">
@@ -132,7 +132,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
         <br>
@@ -230,17 +229,17 @@
             <div class="card card-body">
                 <div id="noidea">
                     Stockage et récupération du tableau dans le navigateur grâce à « localStorage » :<br>
-                    &bull; &emsp;A la fin du fichier « main.js », transformer le tableau en texte et le stocker dans une variable :<br>
+                    &emsp;&bull; A la fin du fichier « main.js », transformer le tableau en texte et le stocker dans une variable :<br>
                     &emsp;&emsp;var tabPersos = JSON.stringify(personnages);<br>
-                    &bull; &emsp;Stocker cette variable dans le navigateur avec :<br>
+                    &emsp;&bull; Stocker cette variable dans le navigateur avec :<br>
                     &emsp;&emsp;localStorage.setItem('tabPerso', tabPersos);<br>
-    
+                    <br>
                     Le tableau est maintenant stocké dans le navigateur, testons la page pour le créer et passons à la récupération :<br>
-                    &bull; &emsp;Avant la déclaration du tableau « personnages » écrire :<br>
+                    &emsp;&bull; Avant la déclaration du tableau « personnages » écrire :<br>
                     &emsp;&emsp;&emsp;var personnages = localStorage.getItem('tabPerso');<br>
                     &emsp;&emsp;Si personnages est défini :<br>
                     &emsp;&emsp;&emsp;personnages = JSON.parse(personnages, 'UTF-8’);<br>
-                    &emsp;&emsp;Sinon on initialise un tableau « personnages » vide<br>
+                    &emsp;&emsp;Sinon, on initialise un tableau « personnages » vide.<br>
                     &bull; Le tableau « personnages » est maintenant complété par le contenu stocké par le navigateur, on peut donc supprimer le tableau de la partie 4.<br>
                 </div>
                 <br>
@@ -254,7 +253,7 @@
                         <span>See the Pen <a href="https://codepen.io/SounaLEVRAI/pen/YzEpOWG">
                         TP Jeu 3</a> by Souna (<a href="https://codepen.io/SounaLEVRAI">@SounaLEVRAI</a>)
                         on <a href="https://codepen.io">CodePen</a>.</span>
-                      </p>
+                    </p>
                 </div>
             </div>
         </div>
@@ -269,15 +268,15 @@
             <div class="card card-body">
                 <div id="noidea">
                     Création de la fonction « savePersos() »<br>
-                    &bull; &emsp;Créer la fonction « savePersos() » avec pour paramètre « personnages ».<br>
-                    &bull; &emsp;A l’intérieur, déplacer le code permettant le stockage du tableau « personnages ».<br>
+                    &emsp;&bull; Créer la fonction « savePersos() » avec pour paramètre le tableau « personnages ».<br>
+                    &emsp;&bull; A l’intérieur, déplacer le code permettant le stockage de ce tableau.<br>
                     La fonction doit ressembler à ça :<br>
                 </div>
                 <br>
                 <div>
                     <a href="/tp_jeu/assets/code_savePerso.png" target="_blank"><img src="/tp_jeu/assets/code_savePerso.png"></a>
                 </div>
-                Elle sera appelée lors que l’on créera un nouveau personnage.
+                Elle sera appelée lorsque l’on créera un nouveau personnage.
             </div>
         </div>
         <br>
@@ -292,8 +291,8 @@
                 <div id="noidea">
                     &bull; Créer un fichier « functions.js » dans le dossier « js ».<br>
                     &bull; Déplacer toutes les fonctions présentes dans « main.js » à l’intérieur de « functions.js ».<br>
-                    &bull; Insérer la balise &lt;script src="./js/functions.js">&lt;/script&gt; », dans « index.html », juste après le script « main.js ».<br>
-                    &bull; Insérer la balise &lt;script src= »../js/functions.js">&lt;/script&gt; », dans « addPerso.html ».<br>
+                    &bull; Insérer la balise &lt;script src="./js/functions.js">&lt;/script&gt;, dans « index.html », juste avant le script « main.js ».<br>
+                    &bull; Insérer la balise &lt;script src="../js/functions.js">&lt;/script&gt;, dans « addPerso.html ».<br>
                 </div>
             </div>
         </div>
@@ -308,26 +307,136 @@
             <div class="card card-body">
                 <div id="noidea">
                     Création d’un personnage :<br>
-                    &bull; &emsp;Dans le fichier « functions.js », à la suite de la fonction « savePersos() », créer la fonction « createPerso() ».<br>
-                    &bull; &emsp;Dans cette fonction, créer un objet « personnage » vide, puis récupérer le contenu de chaque champs du formulaire de création de personnage et attribuer les valeurs à l’objet « personnage », pour cela :<br>
+                    &emsp;&bull; Dans le fichier « functions.js », à la suite de la fonction « savePersos() », créer la fonction « createPerso() ».<br>
+                    &emsp;&bull; Dans cette fonction, créer un objet « personnage » vide, puis récupérer le contenu de chaque champs du formulaire de création de personnage et attribuer les valeurs à l’objet « personnage », pour cela :<br>
                     &emsp;&emsp;&bull; personnage.nom = document.getElementById("nom").value;<br>
                     &emsp;&emsp;&bull; personnage.classe = document.getElementById("classe").value;<br>
                     &emsp;&emsp;&bull; On répète cela pour tous les inputs.<br>
-
-                    &bull; &emsp;Une fois le personnage créé, on fait un « console.log(personnage); » pour vérifier que l’on récupère bien toutes les informations.<br>
-                    &bull; &emsp;Dans le fichier « addPerso.html », ajouter « onclick="createPerso() "» dans le bouton du formulaire.<br>
-                </div>
-                <br>
-                <p>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCode4" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Code
-                    </a>
-                </p>
-                <div class="collapse" id="collapseCode4">
-                    <p>Coming soon :)</p>
+                    <br>
+                    &emsp;&bull; Une fois le personnage créé, on fait un « console.log(personnage); » pour vérifier que l’on récupère bien toutes les informations.<br>
+                    &emsp;&bull; Dans le fichier « addPerso.html », ajouter « onclick="createPerso()"» dans le bouton du formulaire.<br>
                 </div>
             </div>
         </div>
+        <br>
+        <!-- Partie 9 -->
+        <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample9" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Partie 9
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample9">
+            <div class="card card-body">
+                <div id="noidea">
+                    Sauvegarde du personnage :<br>
+                    &emsp;&bull; Dans le fichier « main.js », copier le code permettant la récupération et la création du tableau.<br>
+                    &emsp;&bull; Dans la fonction « createPerso() », à la place du « console.log », copier le code précédent.<br>
+                    &emsp;&bull; Le tableau « personnages » est maintenant accessible, faites « personnages.push(personnage); » pour ajouter le personnage créé au tableau.<br>
+                    &emsp;&bull; A la suite, lancer la fonction « savePersos(personnages); ».<br>
+                    &emsp;&bull; Dans « addPerso.html », ajouter « action="../index.html" » en attribut dans la balise « form », cela permettra la redirection vers la page d'accueil après la création d'un personnage.<br>
+                </div>
+                <br>
+                <p>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCode5" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Code
+                    </a>
+                </p>
+                <div class="collapse" id="collapseCode5">
+                    <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="oNoWgxO" data-user="SounaLEVRAI" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                        <span>See the Pen <a href="https://codepen.io/SounaLEVRAI/pen/oNoWgxO">
+                        TP Jeu 4</a> by Souna (<a href="https://codepen.io/SounaLEVRAI">@SounaLEVRAI</a>)
+                        on <a href="https://codepen.io">CodePen</a>.</span>
+                    </p>
+                    <div id="noidea">
+                        PS : c'est un peu bugué sur codepen mais le code fonctionne dans un navigateur normal.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Partie 10 -->
+        <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample10" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Partie 10
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample10">
+            <div class="card card-body">
+                <div id="noidea">
+                    Suppression d'un personnage :<br>
+                    &emsp;&bull; Dans le fichier « functions.js », créer la fonction « supPerso(i) ».
+                    L'indice « i » servira à identifier le bon personnage à supprimer.
+                    Cette fonction doit se lancer lors du clique du bouton « supprimer » d'un personnage,
+                    il faudra donc ajouter un attribut « onclick » sur ce bouton, et récupérer l'indice du personnage dans la fonction « affichePerso() ».<br>
+                    &emsp;&bull; Dans le fichier « main.js », ajouter l'argument « i » de la boucle dans l'appel de la fonction : « affichePerso(element, i); ».<br>
+                    &emsp;&bull; Dans le fichier « functions.js », ajouter le paramètre « i » à la fonction « affichePerso() ».<br>
+                    &emsp;&bull; Dans la fonction « affichePerso() », après la création du bouton de suppression, ajouter l'attribut « onclick » à ce bouton : « btn2.setAttribute('onlick', 'supPerso('+i+')'); ».
+                    Au clique, on appelle la fonction de suppression avec l'indice du personnage en paramètre.<br>
+                    &emsp;&bull; Dans la fonction « supPerso() », récupérer le tableau « personnages », puis faire un « splice() » de notre personnage dans ce tableau, et enfin sauvegarder le nouveau tableau avec la fonction « savePersos() ».<br>
+                    &emsp;&bull; Après la sauvegarde, écrire « document.location.reload(); » afin de recharger la page et prendre en compte les changements.<br>
+                </div>
+                <br>
+                <p>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCode6" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Code
+                    </a>
+                </p>
+                <div class="collapse" id="collapseCode6">
+                    <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js,result" data-slug-hash="gOXWpOR" data-user="SounaLEVRAI" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                        <span>See the Pen <a href="https://codepen.io/SounaLEVRAI/pen/gOXWpOR">
+                        TP Jeu 5</a> by Souna (<a href="https://codepen.io/SounaLEVRAI">@SounaLEVRAI</a>)
+                        on <a href="https://codepen.io">CodePen</a>.</span>
+                    </p>
+                    <div id="noidea">
+                        PS : c'est un peu bugué sur codepen mais le code fonctionne dans un navigateur normal.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Partie 11 -->
+        <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample11" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Partie 11
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample11">
+            <div class="card card-body">
+                <div id="noidea">
+                    La récupération du tableau se fait plusieurs fois dans ce TP, créer une fonction qui s'en charge serait une bonne idée pour optimiser le code :<br>
+                    &emsp;&bull; Dans le fichier « functions.js », créer une fonction « recupListePersos(); ».
+                    Cette fonction reprendra les instructions de récupération du tableau de personnages et le <strong>retournera</strong> (ne pas oublier « return personnages; »).<br>
+                    &emsp;&bull; Remplacer toutes les instructions de récupération du tableau avec : « personnages = recupListePersos(); ».<br>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Partie 11 -->
+        <p>
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#bonus" role="button" aria-expanded="false" aria-controls="bonus">
+                Bonus
+            </a>
+        </p>
+        <div class="collapse" id="bonus">
+            <div class="card card-body">
+                <div id="noidea">
+                    Quelques idées pour vous entraîner en améliorant le TP.<br>
+                    &emsp;&bull; Pouvoir modifier le personnage.<br>
+                    &emsp;&bull; Attribuer une image à chaque classe pour l'afficher sur les différents personnages.<br>
+                    &emsp;&bull; Pour aller beaucoup plus loin : créer une interface de connexion utilisateur et lier les personnages à ce dernier.<br>
+                </div>
+            </div>
+        </div>
+
+        <div id="scroll_to_top">
+            <a href="#top"><img src="/tp_jeu/assets/top.png" alt="Retourner en haut" /></a>
+        </div>
+
+        <footer>
+            <div id="footer">
+                <p>Merci à mon formateur de m'avoir laissé champ libre pour présenter le TP sur mon site.</p>
+            </div>
+        </footer>
 
         <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
