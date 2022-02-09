@@ -11,99 +11,65 @@
     <body>
         <script src="/javascript/navbar.js"></script>
         
-        <nav id="melo_nav">
+        <nav id="tp_jeu">
             <a href="/tp_jeu/index.html">Accueil</a>
+            <a href="/tp_jeu/html/cards.html">Personnages</a>
             <a href="/tp_jeu/html/create.html">Créer</a>
         </nav>
 
-        <form action="/tp_jeu/index.html">
+        <form action="/tp_jeu/html/cards.html">
             <div class="container-md">
                 <div class="col-md-5" id="input">
                     <br>
                     <h2 style="color: white;">Création d'un personnage</h2>
                     <br>
-                    <div id="margin">
-                        <label for="Nom" class="form-label" id="form">Nom</label>
-                        <input type="text" id="Nom" class="form-control" placeholder="Nom du personnage" required="true">
+                    <div>
+                        <label class="form-label" id="form">Name</label>
+                        <input type="text" class="form-control" placeholder="Character Name" id="Name">
                     </div>
-                    <div id="margin">
-                        <label class="form-label" id="form">Classe</label>
-                        <br>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="Classe" value="Guerrier" checked>
-                            <label class="form-check-label" for="Guerrier" id="form">Guerrier</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="Classe" value="Druide">
-                            <label class="form-check-label" for="Druide" id="form">Druide</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="Classe" value="Chasseur">
-                            <label class="form-check-label" for="Chasseur" id="form">Chasseur</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="Classe" value="Voleur">
-                            <label class="form-check-label" for="Voleur" id="form">Voleur</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="Classe" value="Chaman">
-                            <label class="form-check-label" for="Chaman" id="form">Chaman</label>
-                        </div>
+                    <div>
+                        <label class="form-label" id="form">Class</label>
+                        <select class="form-select" id="Class">
+                            <option value="Warrior">Warrior</option>
+                            <option value="Wizard">Wizard</option>
+                            <option value="Hunter">Hunter</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label" id="form">Weapon</label>
+                        <select class="form-select" id="Weapon">
+                            <option value="Sword">Sword</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Bow">Bow</option>
+                        </select>
                     </div>
 
-                    <div id="margin">
-                        <label class="form-label" id="form">Arme</label>
-                        <br>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios2" id="Arme" value="Bâton" checked>
-                            <label class="form-check-label" for="Bâton" id="form">Bâton</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios2" id="Arme" value="Épée">
-                            <label class="form-check-label" for="Épée" id="form">Épée</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios2" id="Arme" value="Arme d'hast">
-                            <label class="form-check-label" for="Arme d'hast" id="form">Arme d'hast</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios2" id="Arme" value="Dagues">
-                            <label class="form-check-label" for="Dagues" id="form">Dagues</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="exampleRadios2" id="Arme" value="Haches">
-                            <label class="form-check-label" for="Haches" id="form">Haches</label>
-                        </div>
-                    </div>
-
-                    <div class="range-wrap" id="margin">
-                        <label for="Endurance" class="form-label" id="form">Endurance</label>
-                        <input type="range" class="form-range" value="1" min="1" max="100" id="Endurance">
+                    <div class="range-wrap">
+                        <label for="Stamina" class="form-label" id="form">Stamina</label>
+                        <input type="range" class="form-range" value="1" min="1" max="100" id="Stamina">
                         <output class="bubble"></output>
                     </div>
-                    <br>
-                    <div class="range-wrap" id="margin">
-                        <label for="Force" class="form-label" id="form">Force</label>
-                        <input type="range" class="form-range" value="1" min="1" max="100" id="Force">
+                    <div class="range-wrap">
+                        <label for="Strength" class="form-label" id="form">Strength</label>
+                        <input type="range" class="form-range" value="1" min="1" max="100" id="Strength">
                         <output class="bubble"></output>
                     </div>
-                    <br>
-                    <div class="range-wrap" id="margin">
-                        <label for="Agilité" class="form-label" id="form">Agilité</label>
-                        <input type="range" class="form-range" value="1" min="1" max="100" id="Agilité">
+                    <div class="range-wrap">
+                        <label for="Agility" class="form-label" id="form">Agility</label>
+                        <input type="range" class="form-range" value="1" min="1" max="100" id="Agility">
                         <output class="bubble"></output>
                     </div>
-                    <br>
-                    <div class="range-wrap" id="margin">
+                    <div class="range-wrap">
                         <label for="Intelligence" class="form-label" id="form">Intelligence</label>
                         <input type="range" class="form-range" value="1" min="1" max="100" id="Intelligence">
                         <output class="bubble"></output>
                     </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary" onclick="createPerso()">Créer</button>
+                    <button type="submit" class="btn btn-primary" onclick="createCharacter()">Créer</button>
                 </div>
             </div>
         </form>
+        
+        <script src="/tp_jeu/js/main.js"></script>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
