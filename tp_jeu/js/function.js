@@ -1,119 +1,145 @@
-function recupListePersos() {
-    var personnages = localStorage.getItem('tabPerso');
-    if (personnages) {
-        personnages = JSON.parse(personnages, 'UTF-8');
-    } else personnages = [];
+// Get every charaters or create an empty array
+function getCharacters() {
+    var characters = localStorage.getItem('tabCharacters');
+    if (characters) {
+        characters = JSON.parse(characters, 'UTF-8');
+    } else characters = [];
 
-    return personnages;
+    return characters;
 }
 
-// Récupération du conteneur
+// Get the main div
 var mainCard = document.querySelector("#mainCard");
 
-// Déclaration de la fonction afficheCard
 /**
- * Fonction permettant de générer une card
- * @param {Object} item objet contenant les information à afficher
- * @param {Element} container conteneur qui va stocker la card générée
+ * Function for generate a card
+ * @param {Object} item contains the informations
+ * @param {Element} container who store the generated card
+ * @param {Number} i character id
  */
-function afficheCard(item, container, i) {
-    // Création de la card
+function displayCards(item, container, i) {
+    // Create the card
     var card = document.createElement('div');
     card.classList.add("card");
     card.style.width = "18rem";
 
-    // Création de la div card-body
+    // Create the div card-body
     var cardBody = document.createElement('div');
     cardBody.classList.add("card-body");
-    cardBody.innerHTML = `<h5 class=\"card-title\">${item.Nom}</h5>`;
+    cardBody.innerHTML = `<h5 class=\"card-title\">${item.Name}</h5>`;
 
-    // Création de p
+    // Create the p with the elements
     var p = document.createElement('p');
     p.classList.add("card-text");
     var uwu = '';
     for (const key in item) {
         const element = item[key];
-        uwu = uwu + key + ' : ' + element + "\n";
+        uwu += key + ' : ' + element + "\n";
     }
     p.innerText = uwu;
 
-    // Création du selectButton
-    var selectButton = document.createElement('a');
-    selectButton.setAttribute('href', '#');
-    selectButton.classList.add('btn');
-    selectButton.classList.add('btn-primary');
-    selectButton.innerText = 'Sélectionner';
+    // Create the selectButton
+    var editButton = document.createElement('button');
+    editButton.setAttribute('type', 'button');
+    editButton.classList.add('btn', 'btn-primary');
+    editButton.setAttribute('data-bs-toggle', 'modal');
+    editButton.setAttribute('data-bs-target', '#editCharacterModal');
+    editButton.setAttribute('data-id', i);
+    editButton.innerText = 'Modifier';
 
-    // Création du deleteButton
+    // Create the deleteButton
     var deleteButton = document.createElement('a');
-    deleteButton.setAttribute('href', '#');
-    deleteButton.classList.add('btn');
-    deleteButton.classList.add('btn-danger');
-    deleteButton.setAttribute('onclick', "supPerso("+i+")");
+    deleteButton.setAttribute('type', 'button');
+    deleteButton.classList.add('btn', 'btn-danger');
+    deleteButton.setAttribute('onclick', 'supCharacter('+i+')');
     deleteButton.innerText = 'Supprimer';
 
-    // Ajout des elements
-    p.appendChild(selectButton);
+    // Add the onclick with the desired character on the modal save button
+    var saveChangesButton = document.getElementById('saveButton');
+    saveChangesButton.setAttribute('onclick', 'editCharacter('+i+')');
+
+    // Add the elements
+    p.appendChild(editButton);
     p.appendChild(deleteButton);
     cardBody.appendChild(p);
     card.appendChild(cardBody);
     container.appendChild(card);
 }
 
-// Fonction de sauvegarde du tableau personnages
-function savePersos(personnages) {
-    // Stockage du tableau dans le navigateur
-    var tabPersos = JSON.stringify(personnages, 'UTF-8');
-    localStorage.setItem('tabPerso', tabPersos);
+// Save the characters array
+function saveCharacters(characters) {
+    // Store the array inside the browser
+    var tabCharacters = JSON.stringify(characters, 'UTF-8');
+    localStorage.setItem('tabCharacters', tabCharacters);
 }
 
-function createPerso() {
-    var personnage = {};
-    personnage.Nom = document.getElementById('Nom').value;
-    if (!personnage.Nom) return;
-    personnage.Classe = document.getElementById('Classe').value;
-    personnage.Arme = document.getElementById('Arme').value;
-    personnage.Endurance = document.getElementById('Endurance').value;
-    personnage.Force = document.getElementById('Force').value;
-    personnage.Agilité = document.getElementById('Agilité').value;
-    personnage.Intelligence = document.getElementById('Intelligence').value;
-    console.log(personnage)
-    personnages = recupListePersos();
+// Create the character and store it
+function createCharacter() {
+    var characters = getCharacters();
+    var character = {};
+    character.Name = document.getElementById('Name').value;
+    if (!character.Name) return;
+    character.Class = document.getElementById('Class').value;
+    character.Weapon = document.getElementById('Weapon').value;
+    character.Stamina = document.getElementById('Stamina').value;
+    character.Strength = document.getElementById('Strength').value;
+    character.Agility = document.getElementById('Agility').value;
+    character.Intelligence = document.getElementById('Intelligence').value;
 
-    personnages.push(personnage);
-    savePersos(personnages);
+    characters.push(character);
+    saveCharacters(characters);
 }
 
-function supPerso(i) {
-    personnages = recupListePersos();
-    if (personnages) {
-        personnages.splice(i, 1);
+// Delete a character
+function supCharacter(i) {
+    console.log("je suis en vie")
+    var characters = getCharacters();
+    if (characters) {
+        characters.splice(i, 1);
 
-        savePersos(personnages);
+        saveCharacters(characters);
 
         document.location.reload();
     } 
 }
 
+// Select a character
+function selectCharacter(i) {
+    var characterList = getCharacters();
+    var character = characterList[i]
+    
+    return character;
+}
 
-const allRanges = document.querySelectorAll(".range-wrap");
-allRanges.forEach(wrap => {
-    const range = wrap.querySelector(".form-range");
-    const bubble = wrap.querySelector(".bubble");
+// Edit the selected character
+function editCharacter(i) {
+    var characterList = getCharacters();
+    var character = characterList[i];
 
-    range.addEventListener("input", () => {
-        setBubble(range, bubble);
-    });
-    setBubble(range, bubble);
-});
+    character.Name = document.getElementById('Name').value;
+    if (!character.Name) return;
+    character.Class = document.getElementById('Class').value;
+    character.Weapon = document.getElementById('Weapon').value;
+    character.Stamina = document.getElementById('Stamina').value;
+    character.Strength = document.getElementById('Strength').value;
+    character.Agility = document.getElementById('Agility').value;
+    character.Intelligence = document.getElementById('Intelligence').value;
 
-function setBubble(range, bubble) {
-    const val = range.value;
-    const min = range.min ? range.min : 0;
-    const max = range.max ? range.max : 100;
-    const newVal = Number(((val - min) * 100) / (max - min));
-    bubble.innerHTML = val;
+    saveCharacters(characterList);
+    document.location.reload();
+}
 
-    // Sorta magic numbers based on size of the native UI thumb
-    bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+// Prefilled the edit modal form
+function putCharacterData(i) {
+    var characterList = getCharacters();
+    var character = characterList[i];
+    document.getElementById('modalLabel').innerText = 'Modification de ' + character.Name;
+
+    document.getElementById('Name').value = character.Name;
+    document.getElementById('Class').value = character.Class;
+    document.getElementById('Weapon').value = character.Weapon;
+    document.getElementById('Stamina').value = character.Stamina;
+    document.getElementById('Strength').value = character.Strength;
+    document.getElementById('Agility').value = character.Agility;
+    document.getElementById('Intelligence').value = character.Intelligence;
 }
