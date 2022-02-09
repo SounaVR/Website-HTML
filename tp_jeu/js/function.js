@@ -92,7 +92,6 @@ function createCharacter() {
 
 // Delete a character
 function supCharacter(i) {
-    console.log("je suis en vie")
     var characters = getCharacters();
     if (characters) {
         characters.splice(i, 1);
