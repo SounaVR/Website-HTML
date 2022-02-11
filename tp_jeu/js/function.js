@@ -18,6 +18,7 @@ var mainCard = document.querySelector("#mainCard");
  * @param {Number} i character id
  */
 function displayCards(item, container, i) {
+    var character = selectCharacter(i);
     // Create the card
     var card = document.createElement('div');
     card.classList.add("card");
@@ -26,7 +27,7 @@ function displayCards(item, container, i) {
     // Create the div card-body
     var cardBody = document.createElement('div');
     cardBody.classList.add("card-body");
-    cardBody.innerHTML = `<h5 class=\"card-title\">${item.Name}</h5>`;
+    cardBody.innerHTML = `<img src="/tp_jeu/assets/${character.Class}.webp" id="imgClass"> <h5 class=\"card-title\">${item.Name}</h5>`;
 
     // Create the p with the elements
     var p = document.createElement('p');
