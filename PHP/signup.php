@@ -1,19 +1,29 @@
 <?php
     session_start();
+    var_dump($_SESSION['listUser']);
     include('./error.php');
     $error = new ErrorHandler();
     $which;
     if (isset($_POST['submit'])) {
         $email = $_POST['email'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
         $confirmPassword = $_POST['confirmPassword'];
 
-        if (!empty($email) && !empty($password) && !empty($confirmPassword)) {
+        if (!empty($email) && !empty($username) && !empty($password) && !empty($confirmPassword)) {
             $emailValid = true;
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $emailValid = false;
+                $which = 'emailSyntaxInvalid';
+            }
             foreach ($_SESSION['listUser'] as $key => $value) {
                 if ($value['email'] === $email) {
                     $emailValid = false;
                     $which = 'mailTaken';
+                    break;
+                } else if ($value['username'] === $username) {
+                    $emailValid = false;
+                    $which = 'usernameTaken';
                     break;
                 }
             }
@@ -22,6 +32,7 @@
                     $hash = password_hash($password, PASSWORD_DEFAULT);
                     $tab = [
                         "email" => $email,
+                        "username" => $username,
                         "password" => $hash
                     ];
                     $_SESSION['listUser'][] = $tab;
@@ -58,6 +69,11 @@
                 <input type="email" class="form-control" id="floatingInput" placeholder="email@example.com" name="email">
                 <label for="floatingInput">Email address</label>
                 <div id="text" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <br>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="nickname" name="username">
+                <label for="floatingInput">Username</label>
             </div>
             <br>
             <div class="form-floating">

@@ -33,5 +33,15 @@
             $output = str_replace($this->search, $replace, $this->subject);
             echo $output;
         }
+        function usernameTaken() {
+            $replace = 'The provided username is already taken.';
+            $output = str_replace($this->search, $replace, $this->subject);
+            echo $output;
+        }
+        function emailSyntaxInvalid() {
+            $replace = 'You need to put a correct email address.';
+            $output = str_replace($this->search, $replace, $this->subject);
+            echo $output;
+        }
     }
 ?>

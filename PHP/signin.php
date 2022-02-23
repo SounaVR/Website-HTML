@@ -1,16 +1,19 @@
 <?php
     session_start();
+    var_dump($_SESSION['listUser']);
     include('./error.php');
     $error = new ErrorHandler();
     $which;
     if (isset($_POST['submit'])) {
-        if (!empty($_POST['email']) && !empty($_POST['password'])) {
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        if (!empty($email) && !empty($username) && !empty($password)) {
             foreach ($_SESSION['listUser'] as $key => $value) {
-                if ($value['email'] === $_POST['email']) {
-                    if (password_verify($_POST['password'], $value['password'])) {
-                        $_SESSION['auth'] = true;
-                        header('Location: ./index.php');
-                    }
+                if ($value['email'] === $email && $value['username'] === $username && password_verify($password, $value['password'])) {
+                    $_SESSION['auth'] = true;
+                    $_SESSION['user'] = [$email, $username, $password];
+                    header('Location: ./index.php');
                 } else {
                     $which = 'badCredentials';
                 }
@@ -43,6 +46,11 @@
                 <input type="email" class="form-control" id="floatingInput" placeholder="email@example.com" name="email">
                 <label for="floatingInput">Email address</label>
                 <div id="text" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <br>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="nickname" name="username">
+                <label for="floatingInput">Username</label>
             </div>
             <br>
             <div class="form-floating">

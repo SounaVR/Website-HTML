@@ -1,6 +1,7 @@
 <?php 
     if (isset($_GET['logout'])) {
         $_SESSION['auth'] = false;
+        $_SESSION['user'] = null;
         header('Location: /PHP/signin.php');
     }
 ?>
