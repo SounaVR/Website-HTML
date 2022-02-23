@@ -28,7 +28,10 @@
             $output = str_replace($this->search, $replace, $this->subject);
             echo $output;
         }
+        function mailTaken() {
+            $replace = 'The provided email is already taken.';
+            $output = str_replace($this->search, $replace, $this->subject);
+            echo $output;
+        }
     }
-    // echo = NULL
-    // return = string(0) ""
 ?>

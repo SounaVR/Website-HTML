@@ -6,9 +6,11 @@
     if (isset($_POST['submit'])) {
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
             foreach ($_SESSION['listUser'] as $key => $value) {
-                if ($value['email'] === $_POST['email'] && $value['password'] === $_POST['password']) {
-                    $_SESSION['auth'] = true;
-                    header('Location: /PHP/index.php');
+                if ($value['email'] === $_POST['email']) {
+                    if (password_verify($_POST['password'], $value['password'])) {
+                        $_SESSION['auth'] = true;
+                        header('Location: ./index.php');
+                    }
                 } else {
                     $which = 'badCredentials';
                 }
@@ -31,20 +33,11 @@
     <body>  
         <script src="/javascript/navbar.js"></script>
 
-        <?= include('./nav.php') ?>
+        <?php include('./nav.php') ?>
         <br>
         <br>
         <h1 style="color: white;">Login</h1>
-        <?php
-            switch ($which) {
-                case 'badCredentials':
-                    $error->badCredentials();
-                    break;
-                case 'emptyFields':
-                    $error->emptyFields();
-                    break;
-            }
-        ?>
+        <?php if (!empty($which)) $error->$which(); ?>
         <form id="form" method="POST">
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="email@example.com" name="email">

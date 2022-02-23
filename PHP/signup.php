@@ -9,15 +9,26 @@
         $confirmPassword = $_POST['confirmPassword'];
 
         if (!empty($email) && !empty($password) && !empty($confirmPassword)) {
-            if ($password === $confirmPassword) {
-                $tab = [
-                    "email" => $email,
-                    "password" => $password
-                ];
-                $_SESSION['listUser'] += $tab;
-                header("Location: /PHP/index.php");
-            } else {
-                $which = 'passwordDoesntMatch';
+            $emailValid = true;
+            foreach ($_SESSION['listUser'] as $key => $value) {
+                if ($value['email'] === $email) {
+                    $emailValid = false;
+                    $which = 'mailTaken';
+                    break;
+                }
+            }
+            if ($emailValid) {
+                if ($password === $confirmPassword) {
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
+                    $tab = [
+                        "email" => $email,
+                        "password" => $hash
+                    ];
+                    $_SESSION['listUser'][] = $tab;
+                    header("Location: ./index.php");
+                } else {
+                    $which = 'passwordDoesntMatch';
+                }
             }
         } else {
             $which = 'emptyFields';
@@ -37,20 +48,11 @@
     <body>  
         <script src="/javascript/navbar.js"></script>
 
-        <?= include('./nav.php') ?>
+        <?php include('./nav.php') ?>
         <br>
         <br>
         <h1 style="color: white;">Register</h1>
-        <?php
-            switch ($which) {
-                case 'passwordDoesntMatch':
-                    $error->passwordDoesntMatch();
-                    break;
-                case 'emptyFields':
-                    $error->emptyFields();
-                    break;
-            }
-        ?>
+        <?php if (!empty($which)) $error->$which(); ?>
         <form id="form" method="POST">
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="email@example.com" name="email">

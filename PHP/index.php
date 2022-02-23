@@ -1,13 +1,5 @@
 <?php
     session_start();
-    if (!isset($_SESSION['auth'])) {
-        $_SESSION['auth'] = false;
-    }
-
-    if ($_SESSION['auth'] == false) {
-        header('Location: /PHP/signin.php');
-    }
-
     if (isset($_SESSION['listUser'])) {
         $tab = $_SESSION['listUser'];
     } else {
@@ -23,6 +15,14 @@
         ];
         $_SESSION['listUser'] = $tab;
     }
+
+    if (!isset($_SESSION['auth'])) {
+        $_SESSION['auth'] = false;
+    }
+
+    if ($_SESSION['auth'] == false) {
+        header('Location: /PHP/signin.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,7 +37,7 @@
     <body>  
         <script src="/javascript/navbar.js"></script>
 
-        <?= include('./nav.php') ?>
+        <?php include('./nav.php') ?>
         <br>
         <br>
         <h1 style="color: white;">Bienvenue</h1>
