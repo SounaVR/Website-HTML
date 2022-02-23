@@ -26,11 +26,7 @@ navbar.innerHTML = `
                         PHP
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-<<<<<<< HEAD
                         <li><a class="dropdown-item" href="/PHP/index.php">TP 1</a></li>
-=======
-                        <li><a class="dropdown-item" href="/PHP/index.php">Accueil</a></li>
->>>>>>> 3053bcaec078d52ec8414cb80e15ecaf501d420f
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

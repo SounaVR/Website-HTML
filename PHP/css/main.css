@@ -2,7 +2,6 @@ body {
     background-color: rgb(59, 59, 59);
 }
 
-<<<<<<< HEAD
 h1 {
     color: white;
     font-size: 50px;
@@ -37,9 +36,4 @@ nav#tp_php a:hover {
 
 #text {
     color: white;
-=======
-p {
-    color: white;
-    font-size: 50px;
->>>>>>> 3053bcaec078d52ec8414cb80e15ecaf501d420f
 }
