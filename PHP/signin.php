@@ -1,10 +1,10 @@
 <?php
     session_start();
-    var_dump($_SESSION['listUser']);
     include('./error.php');
     $error = new ErrorHandler();
     $which;
     if (isset($_POST['submit'])) {
+        // $id = count($_SESSION['listUser'])-1;
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -12,7 +12,12 @@
             foreach ($_SESSION['listUser'] as $key => $value) {
                 if ($value['email'] === $email && $value['username'] === $username && password_verify($password, $value['password'])) {
                     $_SESSION['auth'] = true;
-                    $_SESSION['user'] = [$email, $username, $password];
+                    $_SESSION['user'] = [
+                        'id' => $value['id'],
+                        'email' => $email,
+                        'username' => $username,
+                        'password' => $password
+                    ];
                     header('Location: ./index.php');
                 } else {
                     $which = 'badCredentials';

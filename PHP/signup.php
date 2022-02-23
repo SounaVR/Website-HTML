@@ -1,6 +1,5 @@
 <?php
     session_start();
-    var_dump($_SESSION['listUser']);
     include('./error.php');
     $error = new ErrorHandler();
     $which;
@@ -31,6 +30,7 @@
                 if ($password === $confirmPassword) {
                     $hash = password_hash($password, PASSWORD_DEFAULT);
                     $tab = [
+                        "id" => count($_SESSION['listUser'])+1,
                         "email" => $email,
                         "username" => $username,
                         "password" => $hash
