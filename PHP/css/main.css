@@ -1,0 +1,39 @@
+body {
+    background-color: rgb(59, 59, 59);
+}
+
+h1 {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+
+nav#tp_php {
+    background-color: rgba(43, 220, 20, 0.815);
+    display: flex;
+    margin: auto;
+    width: max-content;
+    height: max-content;
+    padding: 5px;
+}
+
+nav#tp_php a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+}
+
+nav#tp_php a:hover {
+    color: pink;
+    padding: 15px;
+}
+
+#form {
+    margin: auto;
+    width: 50%;
+    height: 50%;
+}
+
+#text {
+    color: white;
+}
