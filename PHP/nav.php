@@ -13,6 +13,7 @@
     <a href="/PHP/signin.php">Sign in</a>
     <a href="/PHP/signup.php">Sign up</a>
     <?php if ($_SESSION['auth']) { ?>
+        <a href="/PHP/users.php">Users</a>
         <form class="form" method="GET">
             <button type="submit" name="logout" class="btn btn-primary">Logout</button>
         </form>
