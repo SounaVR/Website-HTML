@@ -7,7 +7,6 @@
 ?>
 
 <nav id="tp_php">
-    <a href="/PHP/home.php">Home</a>
     <a href="/PHP/index.php">Accueil</a>
     <a href="/PHP/profile.php">Profile</a>
     <a href="/PHP/signin.php">Sign in</a>

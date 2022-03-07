@@ -9,8 +9,7 @@
 
 body {
     display: grid;
-    background-color: #DAD3DB;
-    background-image: url("/chez_melo/assets/background.jpg");
+    background-image: url("/chez_melo/assets/background.webp");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

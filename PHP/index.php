@@ -32,7 +32,7 @@
         <?php include('./nav.php') ?>
         <br>
         <br>
-        <h1 style="color: white;">Bienvenue <?php echo htmlspecialchars($_SESSION['user']['username']) ?> </h1>
+        <h1 style="color: white;">Welcome <?php echo htmlspecialchars($_SESSION['user']['username']) ?> </h1>
         <br>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

@@ -1,11 +1,18 @@
 body {
     background-color: rgb(59, 59, 59);
+    text-decoration: none;
+    word-wrap: break-word;
+    text-align: center;
 }
 
 h1 {
     color: white;
     font-size: 50px;
     text-align: center;
+}
+
+#noTextAlign {
+    text-align: left;
 }
 
 nav#tp_php {
@@ -36,4 +43,17 @@ nav#tp_php a:hover {
 
 #text {
     color: white;
+}
+
+/* Imbriquée dans une autre règle-@ conditionnelle */
+@supports (display: flex) {
+    @media screen and (max-width: 650px) {
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            text-align: left;
+        }
+    }
 }
