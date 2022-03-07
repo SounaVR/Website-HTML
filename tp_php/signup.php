@@ -3,13 +3,7 @@
     include('./error.php');
     $error = new ErrorHandler();
     $which;
-
-    if ($_SESSION['auth'] == false) {
-        header('Location: /PHP/signin.php');
-    }
-
     if (isset($_POST['submit'])) {
-        $user = $_SESSION['user'];
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -21,18 +15,28 @@
                 $emailValid = false;
                 $which = 'emailSyntaxInvalid';
             }
+            foreach ($_SESSION['listUser'] as $key => $value) {
+                if ($value['email'] === $email) {
+                    $emailValid = false;
+                    $which = 'mailTaken';
+                    break;
+                } else if ($value['username'] === $username) {
+                    $emailValid = false;
+                    $which = 'usernameTaken';
+                    break;
+                }
+            }
             if ($emailValid) {
                 if ($password === $confirmPassword) {
                     $hash = password_hash($password, PASSWORD_DEFAULT);
-                    $user = [
-                        "id" => $user['id'],
+                    $tab = [
+                        "id" => count($_SESSION['listUser'])+1,
                         "email" => $email,
                         "username" => $username,
                         "password" => $hash
                     ];
-                    $_SESSION['listUser'][$user['id']-1] = $user;
-                    $_SESSION['user'] = $user;
-                    header('Refresh:0');
+                    $_SESSION['listUser'][] = $tab;
+                    header("Location: ./index.php");
                 } else {
                     $which = 'passwordDoesntMatch';
                 }
@@ -47,10 +51,10 @@
     <head>
         <meta charset="UTF-8">
         <script src="/javascript/head.js"></script>
-        <title>[PHP] Profile</title>
+        <title>[PHP] Sign up</title>
 
         <script src="https://kit.fontawesome.com/c08589246e.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/PHP/css/main.css">
+        <link rel="stylesheet" href="/tp_php/css/main.css">
     </head>
     <body>  
         <script src="/javascript/navbar.js"></script>
@@ -58,31 +62,33 @@
         <?php include('./nav.php') ?>
         <br>
         <br>
-        <h1 style="color: white;">Bienvenue <?php echo htmlspecialchars($_SESSION['user']['username']) ?> </h1>
+        <h1 style="color: white;">Register</h1>
         <?php if (!empty($which)) $error->$which(); ?>
         <form id="form" method="POST">
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="email@example.com" name="email" value="<?php echo $_SESSION['user']['email'] ?>">
+                <input type="email" class="form-control" id="floatingInput" placeholder="email@example.com" name="email">
                 <label for="floatingInput">Email address</label>
                 <div id="text" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <br>
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="nickname" name="username" value="<?php echo $_SESSION['user']['username'] ?>">
+                <input type="text" class="form-control" id="floatingInput" placeholder="nickname" name="username">
                 <label for="floatingInput">Username</label>
             </div>
             <br>
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingInput" placeholder="123" name="password">
-                <label for="floatingInput" class="form-label">New password</label>
+                <label for="floatingInput" class="form-label">Password</label>
             </div>
             <br>
             <div class="form-floating">
                 <input type="password" class="form-control" id="floatingInput" placeholder="123" name="confirmPassword">
-                <label for="floatingInput" class="form-label">Confirm new password</label>
+                <label for="floatingInput" class="form-label">Confirm Password</label>
             </div>
             <br>
-            <button type="submit" name="submit" class="btn btn-primary">Update</button>
+            <button type="submit" name="submit" class="btn btn-primary">Register</button>
+            <br>
+            <p style="color: white;">Already have an account ? <a href="/tp_php/signin.php">Sign in here</a></p>
         </form>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

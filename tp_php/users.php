@@ -2,7 +2,7 @@
     session_start();
 
     if ($_SESSION['auth'] == false) {
-        header('Location: /PHP/signin.php');
+        header('Location: /tp_php/signin.php');
     }
     
     if (!empty($_POST)) {
@@ -27,7 +27,7 @@
         <title>[PHP] Accueil</title>
 
         <script src="https://kit.fontawesome.com/c08589246e.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/PHP/css/main.css">
+        <link rel="stylesheet" href="/tp_php/css/main.css">
     </head>
     <body>  
         <script src="/javascript/navbar.js"></script>

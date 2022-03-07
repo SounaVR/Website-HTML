@@ -26,7 +26,7 @@ navbar.innerHTML = `
                         PHP
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/PHP/index.php">TP 1</a></li>
+                        <li><a class="dropdown-item" href="/tp_php/index.php">TP</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
