@@ -1,19 +1,36 @@
 <?php
     // Connect to the database
-    require_once('./modules/bdd_connect.php');
+    require_once('./modules/db_connect.php');
 
-    $bdd = connectDB();
+    $db = connectDB();
 
     // Results one ligne with fetch
     $query = "SELECT * FROM clients WHERE NUMERO_CLIENT = 412";
-    $stmt = $bdd->query($query);
-    $data = $stmt->fetch();
+    $req = $db->query($query);
+    $data = $req->fetch();
     // var_dump($data);
 
     // Results of table with fetch in a loop
     $query = "SELECT * FROM clients";
-    $stmt = $bdd->query($query);
-    while ($data = $stmt->fetch()) {
-        var_dump($data);
+    $req = $db->query($query);
+    while ($data = $req->fetch()) {
+        // var_dump($data);
     }
+
+    // Results of table with fetchAll
+    $query = "SELECT * FROM clients";
+    $req = $db->query($query);
+    $array = $req->fetchAll();
+    // var_dump($array);
+
+    // Insert request
+    // $count = $db->exec("INSERT INTO clients VALUES ('1', 'Gangnam', 'Style', '481 Oak', 'Lansing', 'USA', '727', '485', '2150', '03')");
+    // var_dump($count);
+
+    // Delete request
+    // $count = $db->exec("DELETE FROM clients WHERE NUMERO_CLIENT = 1");
+    // var_dump($count);
+
+    $req->closeCursor();
+    $db = NULL;
 ?>
