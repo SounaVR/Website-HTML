@@ -1,40 +1,19 @@
 <?php
-    session_start();
+    // Connect to the database
+    require_once('./modules/bdd_connect.php');
 
-    if (isset($_SESSION['listUser'])) {
-        $tab = $_SESSION['listUser'];
-    } else {
-        $tab = [];
-        $_SESSION['listUser'] = $tab;
-    }
+    $bdd = connectDB();
 
-    if (!isset($_SESSION['auth'])) {
-        $_SESSION['auth'] = false;
-    }
+    // Results one ligne with fetch
+    $query = "SELECT * FROM clients WHERE NUMERO_CLIENT = 412";
+    $stmt = $bdd->query($query);
+    $data = $stmt->fetch();
+    // var_dump($data);
 
-    if ($_SESSION['auth'] == false) {
-        header('Location: /PHP/signin.php');
+    // Results of table with fetch in a loop
+    $query = "SELECT * FROM clients";
+    $stmt = $bdd->query($query);
+    while ($data = $stmt->fetch()) {
+        var_dump($data);
     }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <script src="/javascript/head.js"></script>
-        <title>[PHP] Accueil</title>
-
-        <script src="https://kit.fontawesome.com/c08589246e.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/PHP/css/main.css">
-    </head>
-    <body>  
-        <script src="/javascript/navbar.js"></script>
-
-        <?php include('./nav.php') ?>
-        <br>
-        <br>
-        <h1 style="color: white;">Welcome <?php echo htmlspecialchars($_SESSION['user']['username']) ?> </h1>
-        <br>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </body>
-</html>
