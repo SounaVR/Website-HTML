@@ -1,3 +1,0 @@
-SetEnv HTTP_db "DB_NAME"
-SetEnv HTTP_user "USERNAME"
-SetEnv HTTP_pwd "USERNAME_PASS"
